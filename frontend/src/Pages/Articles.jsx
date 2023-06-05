@@ -1,14 +1,12 @@
 import React from 'react'
 import Layout from '../components/Layout/Layout'
-import NewsCard from '../components/NewsCard'
 
-const Home = () => {
+const Articles = () => {
   return (
     <Layout>
-      <NewsCard />
-
+      Articles
     </Layout>
   )
 }
 
-export default Home;
+export default Articles

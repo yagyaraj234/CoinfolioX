@@ -1,4 +1,6 @@
+// import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
+
 const Header = () => {
     return (
         <>
@@ -23,10 +25,8 @@ const Header = () => {
                 </ul>
                 <div className="flex gap-4">
 
-                    <button className="border px-4 py-1 rounded-md hover:bg-blue-700 hover:text-white"><Link to="/login">Login</Link></button>
-                    <button className="px-4 py-1 rounded-md border hover:bg-gray">
-                        <Link to='/signup'>Signup</Link>
-                    </button>
+                    <button className="border px-4 py-1 rounded-md hover:bg-blue-600  hover:text-white" ><Link to="/login">Login</Link></button>
+                    
                 </div>
             </nav>
 
