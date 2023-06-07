@@ -19,7 +19,7 @@ const Footer = () => {
   const [showDropDown, setShowDropDown] = useState(false)
   return (
     <div className='absolute'>
-      <div className='flex flex-col  px-10 py-2 md:w-full  relative bottom-0 border-t-2'>
+      <div className='flex flex-col  md:px-10 px-2 py-2 md:w-full  relative bottom-0 border-t-2'>
         <div className="">
           {/* <p </p> */}
           <Link to='/' className='text-2xl font-bold text-blue-800 text-left '>CoinFolioX</Link>

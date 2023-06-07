@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom'
 const Header = () => {
     return (
         <>
-            <nav className="  justify-between items-center px-10 py-1 cursor-pointer md:flex md:flex-row  ">
+            <nav className="  justify-between items-center md:px-10 px-2 py-1 cursor-pointer md:flex md:flex-row  ">
                 <p className="text-blue-800 font-bold text-2xl">
                     <Link to='/'>CoinFolioX</Link>
                 </p>

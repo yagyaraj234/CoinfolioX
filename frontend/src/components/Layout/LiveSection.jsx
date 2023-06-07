@@ -2,7 +2,7 @@ import React from 'react'
 
 const LiveSection = () => {
   return (
-    <div className='px-10 py-1 border-b-2 '>LiveSection</div>
+    <div className='md:px-10 px-2 py-1 border-b-2 '>LiveSection</div>
   )
 }
 
