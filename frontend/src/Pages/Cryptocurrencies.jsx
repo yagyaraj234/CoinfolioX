@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useLayoutEffect } from "react";
 import Layout from "../components/Layout/Layout";
 import axios from "axios";
 
@@ -7,7 +7,7 @@ const Cryptocurrencies = () => {
 
   const [currency, setCurrency] = useState("Usd");
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     axios
       .get(
         `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=50&page=1&sparkline=false&locale=en`
@@ -16,7 +16,10 @@ const Cryptocurrencies = () => {
         setCryptoData(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [currency]);
+  const currChange =()=>{
+    setCurrency('Usd');
+  }
   return (
     <Layout>
       <div className="flex md:flex-row flex-col md:justify-between md:items-center">
@@ -24,6 +27,7 @@ const Cryptocurrencies = () => {
           Cryptocurrency Prices by Market Cap
         </h1>
         <div className="flex border rounded-lg font-normal transition-colors md:mb-0 w-[90px]  mb-2 ">
+
           <button
             className={`px-2 rounded-l-lg ${
               currency === "Inr" && " text-white bg-blue-700 "
@@ -36,7 +40,7 @@ const Cryptocurrencies = () => {
             className={` px-2 rounded-r-lg  ${
               currency === "Usd" && "bg-blue-700 text-white"
             }`}
-            onClick={() => setCurrency("Usd")}
+            onClick={currChange}
           >
             USD
           </button>
@@ -76,16 +80,16 @@ const Cryptocurrencies = () => {
               </p>
             </li>
             <li className="border md:w-1/2 w-4/5 py-2 text-center px-1">
-            <span>{currency==='Inr'?'₹':'$'}</span>{coin.current_price}
+            <span>{currency==='Inr'?'₹ ':'$'}</span>{coin.current_price}
             </li>
-            <li className="hid border md:w-1/2 py-2 px-1"><span>{currency==='Inr'?'₹':'$'}</span>{coin.high_24h}</li>
-            <li className="hid border md:w-1/2 py-2 px-1"><span>{currency==='Inr'?'₹':'$'}</span>{coin.low_24h}</li>
+            <li className="hid border md:w-1/2 py-2 px-1"><span>{currency==='Inr'?'₹ ':'$'}</span>{coin.high_24h}</li>
+            <li className="hid border md:w-1/2 py-2 px-1"><span>{currency==='Inr'?'₹ ':'$'}</span>{coin.low_24h}</li>
             <li className="border hid w-full py-2 text-center px-1">
-            <span>{currency==='Inr'?'₹':'$'}</span>
+            <span>{currency==='Inr'?'₹ ':'$'}</span>
               {coin.total_volume}
             </li>
             <li className="border w-full py-2 text-center px-1">
-                <span>{currency==='Inr'?'₹':'$'}</span>
+                <span>{currency==='Inr'?'₹ ':'$'}</span>
               {coin.market_cap}
             </li>
           </ul>
