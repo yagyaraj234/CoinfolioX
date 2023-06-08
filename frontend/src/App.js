@@ -9,11 +9,11 @@ import {
   Trending,
   Articles,
   Profile,
-  NotFound
+  NotFound,Exchanges
 } from "./Pages/index";
 function App() {
   return (
-    <div>
+    <div className="bg-[#F9FAFD]">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/portfolio" element={<Portfolio />} />
@@ -21,6 +21,7 @@ function App() {
         <Route path="/trending" element={<Trending />} />
         <Route path="/articles" element={<Articles />} />
         <Route path="/user_account" element={<Profile />} />
+        <Route path="/exchanges" element={<Exchanges />} />
 
         {/* Login  Signup routes  */}
         <Route path="/login" element={<Login />} />
