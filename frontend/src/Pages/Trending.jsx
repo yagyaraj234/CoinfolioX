@@ -1,12 +1,52 @@
-import React from 'react'
-import Layout from '../components/Layout/Layout'
+import React, { useEffect, useState } from "react";
+import Layout from "../components/Layout/Layout";
+import axios from "axios";
+import { NavLink } from "react-router-dom";
+import trending from "../trending";
+const data = [
+  { name: "lava", market_cap_rank: 1, price_btc: 313 },
+  { name: "java", market_cap_rank: 2, price_btc: 313 },
+];
 
 const Trending = () => {
+  const [trendingCoin, setTrendingCoin] = useState([]);
+  useEffect(() => {
+    axios
+      .get("https://api.coingecko.com/api/v3/search/trending")
+      .then((res) => setTrendingCoin(res.data.parse()))
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <Layout>
-        Trending
-    </Layout>
-  )
-}
+      <h1 className="text-2xl font-bold">
+        Top Trending Coins in Last 24 hours.
+      </h1>
 
-export default Trending
+      <table>
+        <tr className="mx-auto">
+          <th className="w-[400px] border-2">Rank</th>
+          <th className="w-[400px] border-2">Coin</th>
+          <th className="w-[400px] border-2">Price (BTC)</th>
+        </tr>
+        {trending?.coins?.map((coin) => {
+          return (
+            <tr key={coin.market_cap_rank}>
+              <p>Hello</p>
+              <td>{coin.market_cap_rank}</td>
+              <td>
+                <p>{coin.small}</p>
+                {coin.id}
+                <p className="text-gray-600">{coin.symbol}</p>
+              </td>
+              <td>{coin.price_btc}</td>
+            </tr>
+          );
+        })}
+      </table>
+
+
+    </Layout>
+  );
+};
+
+export default Trending;
