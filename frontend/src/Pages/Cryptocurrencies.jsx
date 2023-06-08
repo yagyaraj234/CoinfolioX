@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useLayoutEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout/Layout";
 import axios from "axios";
 
@@ -14,6 +14,7 @@ const Cryptocurrencies = () => {
       )
       .then((res) => {
         setCryptoData(res.data);
+        console.log(res.data)
       })
       .catch((err) => console.log(err));
   }, [currency]);
