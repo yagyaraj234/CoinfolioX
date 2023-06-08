@@ -16,6 +16,9 @@ const Header = () => {
                         <NavLink to='/cryptocurrencies'>Cryptocurrencies</NavLink>
                     </li>
                     <li>
+                        <NavLink to='/exchanges'>Exchanges</NavLink>
+                    </li>
+                    <li>
                         <NavLink to='/articles' >Articles</NavLink>
 
                     </li>
