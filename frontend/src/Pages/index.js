@@ -7,8 +7,9 @@ import Articles from './Articles'
 import Trending from './Trending'
 import Profile from './Profile'
 import NotFound from './NotFound'
+import Exchanges from './Exchanges'
 
 
 export{
-    Login,Home, Signup,Portfolio,Cryptocurrencies,Articles,Trending,Profile, NotFound
+    Login,Home, Signup,Portfolio,Cryptocurrencies,Articles,Trending,Profile, NotFound,Exchanges
 }
