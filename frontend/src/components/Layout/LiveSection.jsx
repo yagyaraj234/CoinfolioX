@@ -5,10 +5,11 @@ const LiveSection = () => {
   let [btcPrice, setBtcPrice] = useState([]);
   let [ethPrice, setEthPrice] = useState([]);
 
+
   useEffect(() => {
     axios
       .get(
-        "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd"
+        `https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=Usd`
       )
       .then((res) => {
         setBtcPrice(res.data.bitcoin.usd);

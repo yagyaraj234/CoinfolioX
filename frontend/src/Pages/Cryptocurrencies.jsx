@@ -55,6 +55,7 @@ const Cryptocurrencies = () => {
         </div>
       </div>
 
+
       <ul>
         <ul className="flex justify-between border text-center items-center ">
           <li className="border w-1/2 text-gray-800 py-2 px-1 md:px-3">Rank</li>
@@ -81,17 +82,17 @@ const Cryptocurrencies = () => {
             key={coin.market_cap_rank}
             className="flex justify-between border text-center items-center "
           >
-            <li className="border w-1/2 text-gray-800 py-2 px-1 md:px-3">
+            <li className="border w-1/2 text-gray-800 md:py-2 py-5 px-1 md:px-3">
               {coin.market_cap_rank}
             </li>
-            <li className="border md:w-10/12 w-2/3  flex flex-row justify-start items-center py-2 px-1 ">
+            <li className=" md:w-10/12 w-2/3  flex flex-row justify-start items-center md:py-2 py-5 pl-1 pr-2 border-r-2 ">
               <img className="h-4 md:pl-3 pl-1 " src={coin.image} alt="logo" />
               <p className={`hid pl-1 `}>{coin.name.slice(0, 12)}</p>
               <p className="uppercase text-gray-400 text-center pl-2 px-1">
                 {coin.symbol}
               </p>
             </li>
-            <li className="border md:w-1/2 w-4/5 py-2 text-center px-1">
+            <li className=" md:w-1/2 w-4/5 py-2 text-center px-1">
               <span>{currency === "Inr" ? "₹ " : "$"}</span>
               {coin.current_price}
             </li>
