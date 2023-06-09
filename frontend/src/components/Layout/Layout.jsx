@@ -10,7 +10,7 @@ const Layout = ({ children }) => {
             <LiveSection />
             <Header />
             </div>
-            <main className='md:px-10 px-2 py-10 min-w-[400px] '>
+            <main className='md:px-10 px-2 py-10  '>
                 {children}
             </main>
             <Footer />
