@@ -207,7 +207,7 @@ const Cryptocurrencies = () => {
         </div>
       </div>
 
-      <table className="border-2  my-2 md:text-md text-sm  ">
+      <table className="border-2  my-2 md:text-md text-sm w-full  ">
         <tr className=" border-b-2">
           <th className="md:py-2 py-1 md:w-1/12 w-1/8 border-r-2 ">Rank</th>
           <th className="md:py-2 py-1 md:w-3/12 w-1/5 border-r-2">Name</th>
