@@ -13,7 +13,7 @@ import {
 } from "./Pages/index";
 function App() {
   return (
-    <div className="bg-[#F9FAFD]">
+    <div className=" text-justify bg-[#F9FAFD]">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/portfolio" element={<Portfolio />} />
