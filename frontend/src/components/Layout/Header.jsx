@@ -19,7 +19,7 @@ const Header = () => {
       {screen <= "480" ? (
         <MobHeader />
       ) : (
-        <nav className="  justify-between items-center md:px-10 px-2 py-1 cursor-pointer md:flex md:flex-row  ">
+        <nav className="justify-between items-center md:px-10 px-2 py-1 cursor-pointer flex flex-row  ">
           <p className="text-blue-800 font-bold text-2xl">
             <Link to="/">CoinFolioX</Link>
           </p>
