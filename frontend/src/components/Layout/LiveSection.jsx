@@ -19,7 +19,7 @@ const LiveSection = () => {
       .catch((err) => console.log(err));
   });
   return (
-    <div className="md:px-10 px-2 py-1 border-b-2 flex justify-between  ">
+    <div className="md:px-10 px-2 py-1 border-b-2 flex justify-between hid  ">
       <p>LiveSection</p>
       <div className="flex gap-1 text-sm">
         <p >
