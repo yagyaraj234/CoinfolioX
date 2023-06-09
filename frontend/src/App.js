@@ -9,15 +9,18 @@ import {
   Trending,
   Articles,
   Profile,
-  NotFound,Exchanges
+  NotFound,
+  Exchanges,
 } from "./Pages/index";
+import CoinDetail from "./Pages/CoinDetail";
 function App() {
   return (
     <div className=" text-justify bg-[#F9FAFD]">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/portfolio" element={<Portfolio />} />
-        <Route path="/cryptocurrencies" element={<Cryptocurrencies />} />
+        <Route path="/cryptocurrencies" element={<Cryptocurrencies />}></Route>
+        <Route path="/coins/:id" element={<CoinDetail />} />
         <Route path="/trending" element={<Trending />} />
         <Route path="/articles" element={<Articles />} />
         <Route path="/user_account" element={<Profile />} />

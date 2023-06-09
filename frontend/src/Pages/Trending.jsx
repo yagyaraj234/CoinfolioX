@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout/Layout";
 import axios from "axios";
-
+import { Link } from "react-router-dom";
 const Trending = () => {
   const [trendingCoin, setTrendingCoin] = useState([]);
   useEffect(() => {
@@ -24,16 +24,36 @@ const Trending = () => {
         </tr>
         {trendingCoin?.map((coin) => {
           return (
-            <tr key={coin.item.market_cap_rank} className="border-y-2 text-center">
-              <td className="border-r-2 p-2">{coin.item.market_cap_rank}</td>
-              <td className="flex items-center py-2 px-2 border-r-2 overflow-hidden">
-                <img className=" w-6 h-6 mx-2" src={coin.item.small} alt="coin_logo" />
-                <p className="hid">{coin.item.id}</p>
-                
-                <p className="text-gray-600 mx-2">{coin.item.symbol}</p>
-                
+            <tr
+              key={coin.item.market_cap_rank}
+              className="border-y-2 text-center"
+            >
+              <td className="border-r-2 p-2">
+                <Link to={`/coins/${coin.item.id}`}>
+                  {" "}
+                  {coin.item.market_cap_rank}
+                </Link>
               </td>
-              <td className="">{coin.item.price_btc.toFixed(10)}</td>
+              <td className=" py-2 px-2 border-r-2 overflow-hidden">
+                <Link
+                  className="flex items-center"
+                  to={`/coins/${coin.item.id}`}
+                >
+                  <img
+                    className=" w-6 h-6 mx-2"
+                    src={coin.item.small}
+                    alt="coin_logo"
+                  />
+                  <p className="hid">{coin.item.id}</p>
+
+                  <p className="text-gray-600 mx-2">{coin.item.symbol}</p>
+                </Link>
+              </td>
+              <td className="">
+                <Link to={`/coins/${coin.item.id}`}>
+                  {coin.item.price_btc * 25000}
+                </Link>
+              </td>
             </tr>
           );
         })}
