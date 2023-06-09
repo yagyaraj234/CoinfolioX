@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const CoinList = ({ amount }) => {
   const [cryptoData, setCryptoData] = useState([]);
@@ -54,25 +55,39 @@ const CoinList = ({ amount }) => {
         </div>
       </div>
 
-      <table className="border-2  my-2 md:text-md text-sm w-full  ">
+      <table className="border-2  text-center my-2 md:text-md text-sm w-full  ">
         <tr className=" border-b-2">
           <th className="md:py-2 py-1 md:w-1/12 w-1/8 border-r-2 ">Rank</th>
           <th className="md:py-2 py-1 md:w-3/12 w-1/5 border-r-2">Name</th>
           <th className="md:py-2 py-1 border-r-2 md:w-2/12 w-1/5">
             Price
-            <span className="text-pink-800">{currency === "Usd" ? " ($)" : " (₹)"}</span>
+            <span className="text-pink-800">
+              {currency === "Usd" ? " ($)" : " (₹)"}
+            </span>
           </th>
           <th className="hid md:py-2 py-1 border-r-2 md:w-1/12 ">
-            24h low<span className="text-pink-800">{currency === "Usd" ? " ($)" : " (₹)"}</span>
+            24h low
+            <span className="text-pink-800">
+              {currency === "Usd" ? " ($)" : " (₹)"}
+            </span>
           </th>
           <th className="hid md:py-2 py-1 border-r-2 md:w-1/12">
-            24h high<span className="text-pink-800">{currency === "Usd" ? " ($)" : " (₹)"}</span>
+            24h high
+            <span className="text-pink-800">
+              {currency === "Usd" ? " ($)" : " (₹)"}
+            </span>
           </th>
           <th className="hid md:py-2 py-1 border-r-2 md:w-2/12">
-            24h Volume<span className="text-pink-800">{currency === "Usd" ? " ($)" : " (₹)"}</span>
+            24h Volume
+            <span className="text-pink-800">
+              {currency === "Usd" ? " ($)" : " (₹)"}
+            </span>
           </th>
           <th className="md:py-2 md:w-2/12   py-1 md:px-2 px-0">
-            Market Cap<span className="text-pink-800">{currency === "Usd" ? " ($)" : " (₹)"}</span>
+            Market Cap
+            <span className="text-pink-800">
+              {currency === "Usd" ? " ($)" : " (₹)"}
+            </span>
           </th>
         </tr>
 
@@ -83,36 +98,39 @@ const CoinList = ({ amount }) => {
               : coin.name.toLowerCase().includes(filterCoin);
           })
           ?.map((coin) => (
-            <tr className="border-b-2 ">
+            <tr className="border-b-2  " key={coin.id}>
               <td className="border-r-2 text-center px-1 py-2 ">
-                {coin.market_cap_rank}
+                <Link to={`/coins/${coin.id}`}> {coin.market_cap_rank}</Link>
               </td>
-              <td className="flex items-center flex-row border-r-2 py-2">
-                <img
-                  src={coin.image}
-                  alt="logo"
-                  className="w-4 h-4 md:mx-2 ml-1"
-                />
-                <p className="hid">{coin.name}</p>
+              <td className=" border-r-2 py-2">
+                <Link className="flex items-center flex-row" to={`/coins/${coin.id}`}>
+                  <img
+                    src={coin.image}
+                    alt="logo"
+                    className="w-4 h-4 md:mx-2 ml-1"
+                  />
+                  <p className="hid">{coin.name}</p>
 
-                <p className="uppercase text-gray-500 text-md overflow-hidden md:mx-2 ">
-                  {coin.symbol}
-                </p>
+                  <p className="uppercase text-gray-500 text-md overflow-hidden md:mx-2 ">
+                    {coin.symbol}
+                  </p>
+                </Link>
               </td>
               <td className="border-r-2 text-center px-1 py-2 ">
-                {coin.current_price}
+                <Link to={`/coins/${coin.id}`}> {coin.current_price}</Link>
               </td>
               <td className="border-r-2 text-center px-1 py-2 hid ">
-                {coin.low_24h}
+                <Link to={`/coins/${coin.id}`}> {coin.low_24h}</Link>
               </td>
               <td className="border-r-2 text-center px-1 py-2 hid ">
-                {coin.high_24h}
+                <Link to={`/coins/${coin.id}`}> {coin.high_24h}</Link>
               </td>
               <td className="border-r-2 text-center px-1 py-2 hid ">
-                {coin.total_volume}
+                <Link to={`/coins/${coin.id}`}> {coin.total_volume}</Link>
               </td>
+
               <td className="border-r-2 text-center  py-2  ">
-                {coin.market_cap}
+                <Link to={`/coins/${coin.id}`}> {coin.market_cap}</Link>
               </td>
             </tr>
           ))}
