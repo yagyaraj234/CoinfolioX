@@ -2,6 +2,10 @@
 
 Welcome to the MERN Stack Crypto Tracker! This web application allows users to track live cryptocurrency prices, view price charts, manage their portfolio to track profit and loss, and create a wishlist of favorite cryptocurrencies. The application is built using the MERN (MongoDB, Express, React, Node.js) stack.
 
+## Live Project
+
+The live version of the project can be accessed [here](https://coinfolio-n.vercel.app/).
+
 ## Features
 
 - **Live Price Tracking:** Users can check the live prices of various cryptocurrencies.
