@@ -95,10 +95,12 @@ const CoinList = ({ amount }) => {
           .filter((coin) => {
             return filterCoin.toLowerCase() === ""
               ? coin
-              : coin.name.toLowerCase().includes(filterCoin);
+              : coin.name.toLowerCase().startsWith(filterCoin);
+          }).filter((coin)=>{
+            return coin.current_price > 300
           })
           ?.map((coin) => (
-            <tr className="border-b-2  " key={coin.id}>
+            <tr className="border-b-2" key={coin.id}>
               <td className="border-r-2 text-center px-1 py-2 ">
                 <Link to={`/coins/${coin.id}`}> {coin.market_cap_rank}</Link>
               </td>
