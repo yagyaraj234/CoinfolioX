@@ -96,8 +96,6 @@ const CoinList = ({ amount }) => {
             return filterCoin.toLowerCase() === ""
               ? coin
               : coin.name.toLowerCase().startsWith(filterCoin);
-          }).filter((coin)=>{
-            return coin.current_price > 300
           })
           ?.map((coin) => (
             <tr className="border-b-2" key={coin.id}>

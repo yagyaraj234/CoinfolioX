@@ -1,34 +1,24 @@
-const express = require("express");
-const dotenv = require("dotenv").config();
-const connectDB = require("./dbConnection");
-const PORT = process.env.PORT || 3000;
-const userDetails = require("./controller/userDetails");
-const getUsersDetails = require("./controller/getUsersDetails");
-const getDetails = require("./controller/getUsersDetails");
-const updateUser = require("./controller/updateUser");
-const replaceUser = require("./controller/updateUser");
-const deleteUser = require("./controller/deleteUser");
+import Express from "express";
+import dotenv from "dotenv";
+import userRegistration from "./controller/user.js";
+import userLogin from "./controller/getUser.js";
+import connectDB from "./dbConnect.js";
+import cors from "cors"
 
-const app = express();
+dotenv.config();
+const app = Express();
+const PORT = process.env.PORT || 4000;
 
-app.use(express.json());
+// Middlewares
+app.use(Express.json());
+app.use(cors());
 
+// Database connection
 connectDB();
-// Create
-app.post("/register", userDetails);
-// Read
-app.get("/users", getUsersDetails);
 
-app.get("/users/:id", getDetails);
-
-// Update
-app.put("/users/:id", replaceUser);
-app.patch("/users/:id", updateUser);
-
-// Delte
-
-app.delete("/users/:id", deleteUser);
+app.post("/signup", userRegistration);
+app.post("/login", userLogin);
 
 app.listen(PORT, () => {
-  console.log(`Port running on ${PORT}`);
+  console.log(`Server running on ${PORT}`);
 });
