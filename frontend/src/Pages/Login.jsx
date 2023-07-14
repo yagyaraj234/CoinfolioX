@@ -22,6 +22,7 @@ const Login = () => {
             <input
               type="email"
               id="email"
+              name="email"
               className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none"
               placeholder="Enter your email"
               value={email}
@@ -35,6 +36,7 @@ const Login = () => {
             <input
               type="password"
               id="password"
+              name="password"
               className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none"
               placeholder="Enter your password"
               value={password}
