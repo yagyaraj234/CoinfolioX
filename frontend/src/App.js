@@ -23,7 +23,7 @@ function App() {
         <Route path="/coins/:id" element={<CoinDetail />} />
         <Route path="/trending" element={<Trending />} />
         <Route path="/articles" element={<Articles />} />
-        <Route path="/user_account" element={<Profile />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/exchanges" element={<Exchanges />} />
 
         {/* Login  Signup routes  */}
