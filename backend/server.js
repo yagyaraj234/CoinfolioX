@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import userRegistration from "./controller/user.js";
 import userLogin from "./controller/getUser.js";
 import connectDB from "./dbConnect.js";
-import cors from "cors"
+import cors from "cors";
 
 dotenv.config();
 const app = Express();
