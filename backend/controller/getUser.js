@@ -1,29 +1,38 @@
-import UserSchema from "../models/UserDetails.js";
+import Joi from "joi";
+import { userSchema } from "../models/UserDetails.js";
+import bcrypt from "bcrypt";
 
 const userLogin = async (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
+  const validate = (data) => {
+    const schema = Joi.object({
+      email: Joi.string().email().required().label("Email"),
+      password: Joi.string().required().label("Password"),
+    });
+    return schema.validate(data);
+  };
 
-  UserSchema.findOne({ email }, function(err, user) {
-    if (err) {
-      console.error('Error while querying the database:', err);
-      client.close();
-      return;
+  try {
+    const { error } = validate(req.body);
+    if (error)
+      return res.status(400).send({ message: error.details[0].message });
+
+    const user = await userSchema.findOne({ email: req.body.email });
+    if (!user)
+      return res.status(401).send({ message: "Invalid Email or Password" });
+
+    const validPassword = await bcrypt.compare(
+      req.body.password,
+      user.password
+    );
+    if (!validPassword) {
+      return res.status(401).send({ message: "Invalid Email or Password" });
     }
 
-    if (user && user.password === password) {
-      // Passwords match, login successful
-      console.log('Login successful!');
-      // Proceed with appropriate actions
-    } else {
-      // Invalid login details
-      console.log('Invalid login!');
-      // Handle the error accordingly
-    }
-
-    client.close();
-  
-});
-}
+    const token = user.generateAuthToken();
+    res.status(200).send({ data: token, message: "Logged in successfully" });
+  } catch (error) {
+    res.status(500).send({ message: "Internal server error" });
+  }
+};
 
 export default userLogin;

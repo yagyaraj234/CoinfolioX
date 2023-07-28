@@ -1,4 +1,7 @@
 import mongoose, { Schema } from "mongoose";
+import jwt from "jsonwebtoken";
+import joi from "joi";
+import passwordComplexity from "joi-password-complexity";
 
 const userData = new Schema({
   name: {
@@ -7,17 +10,10 @@ const userData = new Schema({
   },
   email: {
     type: String,
-    match: /.+\@.+\..+/,
     unique: true,
   },
   password: {
     type: String,
-    min: 8,
-    required: true,
-  },
-  confirmpassword: {
-    type: String,
-    min: 8,
     required: true,
   },
   createdAt: {
@@ -26,6 +22,22 @@ const userData = new Schema({
   },
 });
 
-const UserSchema = mongoose.model("userSchema", userData);
+userData.methods.generateAuthToken = () => {
+  const token = jwt.sign({ _id: this._id }, process.env.JWTPRIVATEKEY, {
+    expiresIn: "7d",
+  });
+  return token;
+};
 
-export default UserSchema;
+const userSchema = mongoose.model("user", userData);
+
+const validate = (data) => {
+  const schema = joi.object({
+    name: joi.string().required().label("Name"),
+    email: joi.string().email().required().label("Email"),
+    password: passwordComplexity().required().label("Password"),
+  });
+  return schema.validate(data);
+};
+
+export { validate, userSchema };
