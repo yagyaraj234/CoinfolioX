@@ -1,77 +1,24 @@
 import React, { useState } from "react";
 import Layout from "../components/Layout/Layout";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
-import ServerResponse from "./ServerResponse";
-
-// const Signup = () => {
-//   const [formData, setFormData] = useState({
-//     name: "",
-//     email: "",
-//     password: "",
-//     confirmpassword: "",
-//   });
-//   const [responseData, setResponseData] = useState(null);
-
-//   const handleChange = (event) => {
-//     setFormData({
-//       ...formData,
-//       [event.target.name]: event.target.value,
-//     });
-//   };
-
-// const handleSubmit = (event) => {
-//   event.preventDefault(); // Prevent the default form submission behavior
-
-//   // Make the POST request to the backend
-//   axios
-//     .post("http://localhost:5500/signup", formData)
-//     .then((response) => {
-//       // Handle the successful response
-//       setResponseData(response.data);
-//     })
-//     .catch((error) => {
-//       console.error("Error:", error);
-//     });
-
-//   setFormData({
-//     name: "",
-//     email: "",
-//     password: "",
-//     confirmpassword: "",
-//   });
-// };
-//   return (
-//     <Layout>
-
-//         <button
-//           className="rounded p-2 w-full border mb-4"
-//           onClick={handleSubmit}
-//         >
-//           Signup
-//         </button>
-//       </div>
-
-// {responseData && (
-//   <div>
-//     <h3>Response:</h3>
-//     <pre>{JSON.stringify(responseData, null, 2)}</pre>
-//   </div>
-// )}
-
-//       {/* <ServerResponse status={201}></ServerResponse> */}
-//     </Layout>
-//   );
-// };
 
 const Signup = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
-    confirmpassword: "",
   });
-  const [responseData, setResponseData] = useState(null);
+  const [responseError, setResponseError] = useState("");
+
+  const navigate = useNavigate();
+
+  const validateForm = () => {
+    if (formData.name.length < 8) {
+      alert("error in name");
+    }
+  };
+
   const handleChange = (event) => {
     setFormData({
       ...formData,
@@ -79,26 +26,29 @@ const Signup = () => {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent the default form submission behavior
 
-    // Make the POST request to the backend
-    axios
-      .post("http://localhost:5500/signup", formData)
-      .then((response) => {
-        // Handle the successful response
-        setResponseData(response.data);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
+    try {
+      const url = "/signup";
+      const { data: res } = await axios.post(url, formData);
+      navigate("/login");
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+        confirmpassword: "",
       });
-
-    setFormData({
-      name: "",
-      email: "",
-      password: "",
-      confirmpassword: "",
-    });
+      console.log(res.message);
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.status >= 400 &&
+        error.response.status <= 500
+      ) {
+        setResponseError(error.response.data.message);
+      }
+    }
   };
 
   return (
@@ -148,7 +98,7 @@ const Signup = () => {
               onChange={handleChange}
             />
           </div>
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <label htmlFor="password" className="block mb-1">
               Confirm Password
             </label>
@@ -161,26 +111,24 @@ const Signup = () => {
               value={formData.confirmpassword}
               onChange={handleChange}
             />
-          </div>
+          </div> */}
           <p className=" text-sm mb-4">
             Already have Account Login
             <NavLink className="cursor-pointer text-blue-600" to="/login">
               &nbsp; here.
             </NavLink>
           </p>
+          {responseError && <p>{responseError}</p>}
           <button
             type="submit"
             className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded"
+            onClick={() => {
+              validateForm();
+            }}
           >
             Signup
           </button>
         </form>
-        {responseData && (
-          <div>
-            <h3>Response:</h3>
-            <pre>{JSON.stringify(responseData.message)}</pre>
-          </div>
-        )}
       </div>
     </Layout>
   );
