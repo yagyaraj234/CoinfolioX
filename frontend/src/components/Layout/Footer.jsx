@@ -51,7 +51,7 @@ const Footer = () => {
               <li
                 key={drop.id}
                 className={`cursor-pointer text-md   w-full
-             border-b-2 ${showDropDown[drop.id] ? "py-0" : "py-3"} font-semibold `}
+             border-b-2 ${showDropDown[drop.id] ? "py-2" : "py-2"} font-semibold `}
                 onClick={() => toggleDropDown(drop.id)} // Toggle visibility for the specific category
               >
                 {drop.name}
