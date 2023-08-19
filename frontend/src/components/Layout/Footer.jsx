@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const dropDown = [
   {
@@ -7,6 +8,7 @@ const dropDown = [
     name: "Resources",
     items: [
       {
+        id: 1,
         item: "Perceptuals",
       },
       {
@@ -16,13 +18,30 @@ const dropDown = [
     ],
   },
   {
+    id: 2,
     name: "Donations",
-    items: [{ item: "Bitcoin" }, { item: "Ethereum" }],
+    items: [
+      { id: 1, item: "Bitcoin" },
+      { id: 2, item: "Ethereum" },
+    ],
   },
 ];
 
 const Footer = () => {
   const [showDropDown, setShowDropDown] = useState({});
+  const [email, setEmail] = useState("");
+  const [button, setButton] = useState(false);
+
+  useEffect(() => {
+    if (email.length > 8) {
+      setButton(true);
+    }
+  }, [email]);
+
+  const subscibe = () => {
+    toast.success("Thank you For subscribing");
+    setEmail("");
+  };
 
   // Function to toggle the visibility of a specific dropdown category
   const toggleDropDown = (id) => {
@@ -31,6 +50,7 @@ const Footer = () => {
 
   return (
     <div className="absolute w-full">
+      <Toaster />
       <div className="flex flex-col  md:px-10 px-2 py-2 md:w-full  relative bottom-0 border-t-2">
         <div className="">
           {/* <p </p> */}
@@ -51,7 +71,9 @@ const Footer = () => {
               <li
                 key={drop.id}
                 className={`cursor-pointer text-md   w-full
-             border-b-2 ${showDropDown[drop.id] ? "py-2" : "py-2"} font-semibold `}
+             border-b-2 ${
+               showDropDown[drop.id] ? "py-2" : "py-2"
+             } font-semibold `}
                 onClick={() => toggleDropDown(drop.id)} // Toggle visibility for the specific category
               >
                 {drop.name}
@@ -62,9 +84,9 @@ const Footer = () => {
                       !showDropDown[drop.id] && "hidden"
                     }`}
                   >
-                    {drop.items.map((subD, index) => (
-                      <li className="border-b py-3" key={index}>
-                        {subD.item}
+                    {drop.items.map((subItem) => (
+                      <li className="border-b py-3" key={subItem.id}>
+                        {subItem.item}
                       </li>
                     ))}
                   </ul>
@@ -83,11 +105,14 @@ const Footer = () => {
             Get the latest crypto news, updates, and reports by subscribing to
             our free newsletter.
           </p>
+
           <input
-            type="text"
+            type="email"
             className="border border-gray-500 rounded-md w-full py-1 my-3 px-3"
+            onChange={(e) => setEmail(e.target.value)}
           />
           <button
+            onClick={subscibe}
             type="submit"
             className="border w-full py-1 rounded-md bg-green-600 text-white"
           >
