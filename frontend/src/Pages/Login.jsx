@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import Layout from "../components/Layout/Layout";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 import axios from "axios";
 const Login = () => {
+
   const navigate = useNavigate();
   const initialValues = {
     email: "yagyaraj@gmail.com",
     password: "8959@Yagya",
   };
   const [formValues, setFormValues] = useState(initialValues);
-  // const [formErrors, setFormErrors] = useState({});
-  const [responseError, setResponseError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,25 +20,23 @@ const Login = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // setFormErrors(validate(initialValues));
     try {
       const url = "/login";
       const res = await axios.post(url, formValues);
-      localStorage.setItem("token", res.data);
+      toast.success("Logged In");
+      console.log(res.data.message);
+      const token = res.data.token;
+      localStorage.setItem("token", token);
       navigate("/");
     } catch (error) {
-      if (
-        error.response &&
-        error.response.status >= 400 &&
-        error.response.status <= 500
-      ) {
-        setResponseError(error.response.data.message);
-      }
+      const message = error.response.data.message;
+      toast.error(message);
     }
   };
   return (
     <Layout>
       <div className="flex justify-center items-center ">
+        <Toaster />
         <form className="w-64" onSubmit={handleSubmit}>
           <h2 className="text-2xl font-bold mb-4">Login</h2>
           <div className="mb-4">
@@ -83,7 +81,7 @@ const Login = () => {
               &nbsp;here.
             </NavLink>
           </p>
-          {responseError && <p>{responseError}</p>}
+          
           <button
             type="submit"
             className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded"
