@@ -1,7 +1,7 @@
 import Express from "express";
 import dotenv from "dotenv";
-import userRegistration from "./controller/user.js";
-import userLogin from "./controller/getUser.js";
+import userRegistration from "./controller/userSignup.js";
+import userLogin from "./controller/userLogin.js";
 import connectDB from "./dbConnect.js";
 import cors from "cors";
 
@@ -11,8 +11,7 @@ const PORT = process.env.PORT || 4000;
 
 // Middlewares
 app.use(Express.json());
-// app.use(cors());
-app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(cors());
 
 // Database connection
 connectDB();
