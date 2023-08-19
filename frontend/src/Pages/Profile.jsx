@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../components/Layout/Layout";
-// import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const profileMenu = [
   { key: 1, name: "Edit Profile", link: "edit_profile" },
@@ -12,6 +12,11 @@ const profileMenu = [
 ];
 
 const Profile = () => {
+  const navigate = useNavigate();
+  const onLogOut = () => {
+    localStorage.clear("token");
+    navigate("/");
+  };
   return (
     <Layout>
       <section className="text-gray-600 body-font">
@@ -22,7 +27,7 @@ const Profile = () => {
           </div>
           <div className="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
             {profileMenu?.map((menuItem) => (
-              <button className="p-2 sm:w-1/2 w-full">
+              <button key={menuItem.key} className="p-2 sm:w-1/2 w-full">
                 <div className="bg-gray-100 hover:bg-gray-200 rounded flex p-4 h-full items-center">
                   <span className="title-font font-medium">
                     {menuItem.name}
@@ -31,7 +36,10 @@ const Profile = () => {
               </button>
             ))}
           </div>
-          <button className="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+          <button
+            onClick={onLogOut}
+            className="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+          >
             Logout
           </button>
         </div>
