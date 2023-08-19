@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import Layout from "../components/Layout/Layout";
 import CryptoChart from "../components/Chart";
 
 const CoinDetail = () => {
@@ -19,14 +18,14 @@ const CoinDetail = () => {
   }, [id]);
 
   if (!coinData) {
-    return <Layout>Loading...</Layout>;
+    return <>Loading...</>;
   }
 
   return (
-    <Layout>
+    <>
       <h2>{coinData.name}</h2>
       <CryptoChart />
-    </Layout>
+    </>
   );
 };
 export default CoinDetail;

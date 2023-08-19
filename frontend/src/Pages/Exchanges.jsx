@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Layout from "../components/Layout/Layout";
 
 const Exchanges = () => {
   const [exchange, setExchange] = useState([]);
@@ -15,7 +14,7 @@ const Exchanges = () => {
       .catch((err) => console.log(err));
   }, []);
   return (
-    <Layout>
+    <>
       <h1 className="text-2xl font-bold my-2">
         Top 100 Centralised Exchange.
       </h1>
@@ -46,7 +45,7 @@ const Exchanges = () => {
           );
         })}
       </table>
-    </Layout>
+    </>
   );
 };
 

@@ -1,12 +1,11 @@
 import React from 'react'
-import Layout from '../components/Layout/Layout'
 import { NavLink } from 'react-router-dom'
 
 
 
 const NotFound = () => {
     return (
-        <Layout>
+        <>
             <div className='md:w-1/3 mx-auto  md:py-20'>
                 {/* <p className='md:text-[120px]'>404</p> */}
                 <div className='flex  text-6xl md:text-[120px] '>
@@ -20,7 +19,7 @@ const NotFound = () => {
                 <NavLink to='/' className='mx-auto w-1/3 border-2 bg-black text-white py-4 px-2 shadow-md hover:bg-gray-900 md:text-xs text-xs'>Go Back to Home</NavLink>
             </div>
 
-        </Layout>
+        </>
     )
 }
 

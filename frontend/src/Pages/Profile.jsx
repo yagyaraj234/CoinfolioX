@@ -1,5 +1,4 @@
 import React from "react";
-import Layout from "../components/Layout/Layout";
 import { useNavigate } from "react-router-dom";
 
 const profileMenu = [
@@ -18,7 +17,7 @@ const Profile = () => {
     navigate("/");
   };
   return (
-    <Layout>
+    <>
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
           <div className="mx-auto  flex flex-col items-center ">
@@ -44,7 +43,7 @@ const Profile = () => {
           </button>
         </div>
       </section>
-    </Layout>
+    </>
   );
 };
 

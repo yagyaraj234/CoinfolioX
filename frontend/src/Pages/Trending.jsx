@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Layout from "../components/Layout/Layout";
 import axios from "axios";
 import { Link } from "react-router-dom";
 const Trending = () => {
@@ -11,7 +10,7 @@ const Trending = () => {
       .catch((err) => console.log(err));
   }, []);
   return (
-    <Layout>
+    <>
       <h1 className="text-2xl font-bold">
         Top Trending Coins in Last 24 hours.
       </h1>
@@ -58,7 +57,7 @@ const Trending = () => {
           );
         })}
       </table>
-    </Layout>
+    </>
   );
 };
 

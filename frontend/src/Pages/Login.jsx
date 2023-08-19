@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Layout from "../components/Layout/Layout";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
@@ -34,7 +33,7 @@ const Login = () => {
     }
   };
   return (
-    <Layout>
+    <>
       <div className="flex justify-center items-center ">
         <Toaster />
         <form className="w-64" onSubmit={handleSubmit}>
@@ -90,7 +89,7 @@ const Login = () => {
           </button>
         </form>
       </div>
-    </Layout>
+    </>
   );
 };
 

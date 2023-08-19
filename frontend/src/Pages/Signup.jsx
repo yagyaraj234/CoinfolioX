@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Layout from "../components/Layout/Layout";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -52,7 +51,7 @@ const Signup = () => {
   };
 
   return (
-    <Layout>
+    <>
       <div className="flex justify-center items-center ">
         <form className="w-64" onSubmit={handleSubmit}>
           <h2 className="text-2xl font-bold mb-4">Signup</h2>
@@ -130,7 +129,7 @@ const Signup = () => {
           </button>
         </form>
       </div>
-    </Layout>
+    </>
   );
 };
 
