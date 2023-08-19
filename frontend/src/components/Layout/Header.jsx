@@ -3,6 +3,11 @@ import { Link, NavLink } from "react-router-dom";
 import MobHeader from "./MobHeader";
 
 const Header = () => {
+  const [token, setToken] = useState("");
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setToken(token);
+  }, []);
   const [screen, setScreen] = useState(window.screen.width);
 
   const widthResize = () => {
@@ -42,7 +47,11 @@ const Header = () => {
           </ul>
           <div className="flex gap-4">
             <button className="border px-4 py-1 rounded-md hover:bg-blue-600  hover:text-white">
-              <Link to="/login">Login</Link>
+              {token ? (
+                <Link to="/profile">Profile</Link>
+              ) : (
+                <Link to="/login">Login</Link>
+              )}
             </button>
           </div>
         </nav>
