@@ -1,11 +1,11 @@
 import { userSchema, validate } from "../models/UserDetails.js";
-import bcrypt from 'bcrypt'
+import bcrypt from "bcrypt";
 
 const userRegistration = async (req, res) => {
   try {
     const { error } = validate(req.body);
     if (error) {
-      console.log(error)
+      console.log(error);
       return res.status(400).send({ message: error.details[0].message });
     }
 
@@ -18,12 +18,12 @@ const userRegistration = async (req, res) => {
     const salt = await bcrypt.genSalt(Number(process.env.SALT));
     const hashPassword = await bcrypt.hash(req.body.password, salt);
 
-    await new userSchema({
+    const newuser = await new userSchema({
       ...req.body,
       password: hashPassword,
       confirmpassword: hashPassword,
     }).save();
-    res.status(201).send({ message: "User created Succesfully" });
+    res.status(201).send({ message: "User created Succesfully", user: user });
   } catch (error) {
     res.status(500).send({ message: "Internal Server Error" });
   }
