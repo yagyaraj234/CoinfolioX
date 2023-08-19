@@ -25,7 +25,7 @@ function App() {
   }, []);
   return (
     <Layout>
-      <div className=" text-justify bg-[#F9FAFD]">
+      <div className=" text-justify bg-white">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/portfolio" element={<Portfolio />} />

@@ -1,6 +1,6 @@
 import Express from "express";
 import dotenv from "dotenv";
-import userRegistration from "./controller/userSignup.js";
+import userSignup from "./controller/userSignup.js";
 import userLogin from "./controller/userLogin.js";
 import connectDB from "./dbConnect.js";
 import cors from "cors";
@@ -16,7 +16,7 @@ app.use(cors());
 // Database connection
 connectDB();
 
-app.post("/signup", userRegistration);
+app.post("/signup", userSignup);
 app.post("/login", userLogin);
 
 app.listen(PORT, () => {

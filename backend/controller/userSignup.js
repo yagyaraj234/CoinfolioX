@@ -1,7 +1,7 @@
 import { userSchema, validate } from "../models/UserDetails.js";
 import bcrypt from "bcrypt";
 
-const userRegistration = async (req, res) => {
+const userSignup = async (req, res) => {
   try {
     const { error } = validate(req.body);
     if (error) {
@@ -29,4 +29,4 @@ const userRegistration = async (req, res) => {
   }
 };
 
-export default userRegistration;
+export default userSignup;

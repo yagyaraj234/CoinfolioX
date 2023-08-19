@@ -1,6 +1,7 @@
 import { userSchema } from "../models/UserDetails.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import cookie from "js-cookie";
 
 const userLogin = async (req, res) => {
   try {
@@ -23,10 +24,8 @@ const userLogin = async (req, res) => {
     });
     user.jwt_token = token;
     user.save();
-
     res.cookie("Authtoken", token, { httpOnly: true, secure: true });
-    res.status(200).send({ message: "Logged in successfully" });
-    // return response;
+    res.status(200).send({ message: "Logged in successfully", token: token });
   } catch (error) {
     res.status(500).send({ message: "Internal server error" });
   }
