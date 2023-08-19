@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import Layout from "../components/Layout/Layout";
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 import axios from "axios";
 const Login = () => {
+  const navigate = useNavigate();
   const initialValues = {
-    email: "",
-    password: "",
+    email: "yagyaraj@gmail.com",
+    password: "8959@Yagya",
   };
   const [formValues, setFormValues] = useState(initialValues);
   // const [formErrors, setFormErrors] = useState({});
@@ -20,9 +23,9 @@ const Login = () => {
     // setFormErrors(validate(initialValues));
     try {
       const url = "/login";
-      const { data: res } = await axios.post(url, formValues);
+      const res = await axios.post(url, formValues);
       localStorage.setItem("token", res.data);
-      window.location = "/";
+      navigate("/");
     } catch (error) {
       if (
         error.response &&
@@ -33,24 +36,6 @@ const Login = () => {
       }
     }
   };
-
-  // const validate = (values) => {
-  //   const errors = {};
-  //   const regex =
-  //     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
-  //   if (!values.email) {
-  //     errors.email = "Email is required";
-  //   } else if (!regex.test(values.email)) {
-  //     errors.email = "This is not a valid email";
-  //   }
-  //   if (!values.password) {
-  //     errors.password = "Password required";
-  //   }
-
-  //   return errors;
-  // };
-
   return (
     <Layout>
       <div className="flex justify-center items-center ">
