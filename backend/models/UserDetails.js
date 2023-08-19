@@ -16,18 +16,22 @@ const userData = new Schema({
     type: String,
     required: true,
   },
+  jwt_token:{
+    type:String,
+    default:""
+  },
   createdAt: {
     type: Date,
     default: Date.now,
   },
 });
 
-userData.methods.generateAuthToken = () => {
-  const token = jwt.sign({ _id: this._id }, process.env.JWTPRIVATEKEY, {
-    expiresIn: "7d",
-  });
-  return token;
-};
+// userData.methods.generateAuthToken = () => {
+//   const token = jwt.sign({ _id: this._id }, process.env.JWTPRIVATEKEY, {
+//     expiresIn: "7d",
+//   });
+//   return token;
+// };
 
 const userSchema = mongoose.model("user", userData);
 
