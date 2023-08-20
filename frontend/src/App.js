@@ -13,18 +13,14 @@ import {
   Exchanges,
 } from "./Pages/index";
 import CoinDetail from "./Pages/CoinDetail";
-import { useEffect, useState } from "react";
 import ProtectedRoutes from "./components/ProtectedRoutes";
-
 import Layout from "./components/Layout/Layout";
+
+import { useToken } from "./Token";
 function App() {
-  const [token, setToken] = useState("");
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    setToken(token);
-  }, []);
+  const { token } = useToken();
   return (
-    <Layout>
+    <Layout token={token}>
       <div className=" text-justify bg-white">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -39,8 +35,8 @@ function App() {
           <Route path="/exchanges" element={<Exchanges />} />
 
           {/* Login  Signup routes  */}
+          <Route path="/profile" element={<Profile />} />
           <Route element={<ProtectedRoutes token={token} />}>
-            <Route path="/profile" element={<Profile />} />
             <Route path="/login" element={<Login />} />
           </Route>
           <Route path="/signup" element={<Signup />} />
