@@ -5,7 +5,6 @@ import toast, { Toaster } from "react-hot-toast";
 
 import axios from "axios";
 const Login = () => {
-
   const navigate = useNavigate();
   const initialValues = {
     email: "yagyaraj@gmail.com",
@@ -52,9 +51,7 @@ const Login = () => {
               onChange={handleChange}
               required
             />
-            {/* <p className=" pl-[13.2px] text-red-500 text-xs">
-              {formErrors.email}
-            </p> */}
+            
           </div>
           <div className="mb-4">
             <label htmlFor="password" className="block mb-1">
@@ -70,9 +67,7 @@ const Login = () => {
               onChange={handleChange}
               required
             />
-            {/* <p className=" pl-[13.2px] text-red-500 text-xs">
-              {formErrors.password}
-            </p> */}
+            
           </div>
           <p className=" text-sm mb-4">
             Don't have Account signup
