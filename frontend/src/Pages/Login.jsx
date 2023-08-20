@@ -26,6 +26,7 @@ const Login = () => {
       toast.success("Logged In");
       console.log(res.data.message);
       const token = res.data.token;
+      console.log(token);
       setToken(token);
       localStorage.setItem("token", token);
       navigate("/");
