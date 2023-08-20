@@ -18,6 +18,9 @@ connectDB();
 
 app.post("/signup", userSignup);
 app.post("/login", userLogin);
+app.post("/", (req, res) => {
+  res.send("hello");
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on ${PORT}`);
