@@ -24,7 +24,6 @@ const Login = () => {
       const url = "https://coinfolioxback.vercel.app/login";
       const res = await axios.post(url, formValues);
       toast.success("Logged In");
-     
       const token = res.data.token;
       setToken(token);
       localStorage.setItem("token", token);

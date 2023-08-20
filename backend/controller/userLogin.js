@@ -6,10 +6,9 @@ import cookie from "js-cookie";
 const userLogin = async (req, res) => {
   try {
     const loginData = req.body;
-    const user = await userSchema.findOne({ email: req.body.email });
-    user.name = "Yagyaraj Lodhi";
-    if (!user) {
-      return res.status(401).send({ message: "Invalid Email or Password" });
+    const Finduser = await userSchema.findOne({ email: req.body.email });
+    if (!Finduser) {
+      res.status(401).send({ message: "Invalid Email or Password" });
     }
 
     const validPassword = await bcrypt.compare(
@@ -22,12 +21,12 @@ const userLogin = async (req, res) => {
     let token = jwt.sign(loginData, process.env.JWTPRIVATEKEY, {
       expiresIn: "7d",
     });
-    user.jwt_token = token;
-    user.save();
+    Finduser.jwt_token = token;
+    Finduser.save();
     res.cookie("Authtoken", token, { httpOnly: true, secure: true });
     res.status(200).send({ message: "Logged in successfully", token: token });
   } catch (error) {
-    res.status(500).send({ message: "Internal server error" });
+    res.status(500).send({ message: "" });
   }
 };
 
