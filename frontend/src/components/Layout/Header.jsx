@@ -5,7 +5,6 @@ import { useToken } from "../Context/Token";
 
 const Header = () => {
   const { token } = useToken();
-  console.log(token);
 
   const [screen, setScreen] = useState(window.screen.width);
 

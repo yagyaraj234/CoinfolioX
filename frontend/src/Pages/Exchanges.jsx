@@ -9,7 +9,6 @@ const Exchanges = () => {
       .get("https://api.coingecko.com/api/v3/exchanges")
       .then((res) => {
         setExchange(res.data);
-        console.log(res.data);
       })
       .catch((err) => console.log(err));
   }, []);

@@ -39,7 +39,6 @@ const Signup = () => {
         password: "",
         confirmpassword: "",
       });
-      console.log(res.message);
     } catch (error) {
       toast.error(error.response.data.message);
     }

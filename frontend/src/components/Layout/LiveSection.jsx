@@ -13,7 +13,6 @@ const LiveSection = () => {
       .then((res) => {
         setBtcPrice(res.data.bitcoin.usd);
         setEthPrice(res.data.ethereum.usd);
-        console.log(res.data);
       })
       .catch((err) => console.log(err));
   }, []);

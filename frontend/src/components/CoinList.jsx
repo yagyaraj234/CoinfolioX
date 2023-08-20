@@ -14,7 +14,7 @@ const CoinList = ({ amount }) => {
       )
       .then((res) => {
         setCryptoData(res.data);
-        console.log(res.data);
+        
       })
       .catch((err) => console.log(err));
   }, [currency]);
