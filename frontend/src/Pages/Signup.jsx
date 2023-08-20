@@ -29,7 +29,7 @@ const Signup = () => {
     event.preventDefault(); // Prevent the default form submission behavior
 
     try {
-      const url = "/signup";
+      const url = "https://coinfolioxback.vercel.app/signup";
       const res = await axios.post(url, formData);
       toast.success("Signup Succesfully");
       navigate("/login");

@@ -21,7 +21,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = "/login";
+      const url = "https://coinfolioxback.vercel.app/login";
       const res = await axios.post(url, formValues);
       toast.success("Logged In");
       console.log(res.data.message);
