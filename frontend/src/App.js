@@ -16,7 +16,7 @@ import CoinDetail from "./Pages/CoinDetail";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import Layout from "./components/Layout/Layout";
 
-import { useToken } from "./Token";
+import { useToken } from "./components/Context/Token";
 function App() {
   const { token } = useToken();
   return (

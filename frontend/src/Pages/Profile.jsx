@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useToken } from "../components/Context/Token";
 
 const profileMenu = [
   { key: 1, name: "Edit Profile", link: "edit_profile" },
@@ -11,10 +12,12 @@ const profileMenu = [
 ];
 
 const Profile = () => {
+  const { setToken } = useToken();
   const navigate = useNavigate();
   const onLogOut = () => {
     localStorage.clear("token");
     navigate("/");
+    setToken(null);
   };
   return (
     <>

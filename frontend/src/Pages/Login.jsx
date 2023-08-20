@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import { useToken } from "../components/Context/Token";
 
 import axios from "axios";
 const Login = () => {
+  const { setToken } = useToken();
   const navigate = useNavigate();
   const initialValues = {
-    email: "yagyaraj@gmail.com",
-    password: "8959@Yagya",
+    email: "testing@gmail.com",
+    password: "Testing@123",
   };
   const [formValues, setFormValues] = useState(initialValues);
 
@@ -24,6 +26,7 @@ const Login = () => {
       toast.success("Logged In");
       console.log(res.data.message);
       const token = res.data.token;
+      setToken(token);
       localStorage.setItem("token", token);
       navigate("/");
     } catch (error) {
@@ -51,7 +54,6 @@ const Login = () => {
               onChange={handleChange}
               required
             />
-            
           </div>
           <div className="mb-4">
             <label htmlFor="password" className="block mb-1">
@@ -67,7 +69,6 @@ const Login = () => {
               onChange={handleChange}
               required
             />
-            
           </div>
           <p className=" text-sm mb-4">
             Don't have Account signup
@@ -75,7 +76,7 @@ const Login = () => {
               &nbsp;here.
             </NavLink>
           </p>
-          
+
           <button
             type="submit"
             className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded"

@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import MobHeader from "./MobHeader";
+import { useToken } from "../Context/Token";
 
 const Header = () => {
-  const [token, setToken] = useState("");
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    setToken(token);
-  }, []);
+  const { token } = useToken();
+  console.log(token);
+
   const [screen, setScreen] = useState(window.screen.width);
 
   const widthResize = () => {
@@ -47,7 +46,7 @@ const Header = () => {
           </ul>
           <div className="flex gap-4">
             <button className="border px-4 py-1 rounded-md hover:bg-blue-600  hover:text-white">
-              {token ? (
+              {token !== null ? (
                 <Link to="/profile">Profile</Link>
               ) : (
                 <Link to="/login">Login</Link>

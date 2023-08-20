@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -8,7 +9,6 @@ const Signup = () => {
     email: "",
     password: "",
   });
-  const [responseError, setResponseError] = useState("");
 
   const navigate = useNavigate();
 
@@ -30,7 +30,8 @@ const Signup = () => {
 
     try {
       const url = "/signup";
-      const { data: res } = await axios.post(url, formData);
+      const res = await axios.post(url, formData);
+      toast.success("Signup Succesfully");
       navigate("/login");
       setFormData({
         name: "",
@@ -40,19 +41,14 @@ const Signup = () => {
       });
       console.log(res.message);
     } catch (error) {
-      if (
-        error.response &&
-        error.response.status >= 400 &&
-        error.response.status <= 500
-      ) {
-        setResponseError(error.response.data.message);
-      }
+      toast.error(error.response.data.message);
     }
   };
 
   return (
     <>
       <div className="flex justify-center items-center ">
+        <Toaster />
         <form className="w-64" onSubmit={handleSubmit}>
           <h2 className="text-2xl font-bold mb-4">Signup</h2>
           <div className="mb-4">
@@ -97,27 +93,13 @@ const Signup = () => {
               onChange={handleChange}
             />
           </div>
-          {/* <div className="mb-4">
-            <label htmlFor="password" className="block mb-1">
-              Confirm Password
-            </label>
-            <input
-              type="confirmpassword"
-              id="confirmpassword"
-              name="confirmpassword"
-              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none"
-              placeholder="Enter password again"
-              value={formData.confirmpassword}
-              onChange={handleChange}
-            />
-          </div> */}
+
           <p className=" text-sm mb-4">
             Already have Account Login
             <NavLink className="cursor-pointer text-blue-600" to="/login">
               &nbsp; here.
             </NavLink>
           </p>
-          {responseError && <p>{responseError}</p>}
           <button
             type="submit"
             className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded"
