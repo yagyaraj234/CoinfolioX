@@ -18,7 +18,7 @@ connectDB();
 
 app.post("/signup", userSignup);
 app.post("/login", userLogin);
-app.post("/", (req, res) => {
+app.get("/", (req, res) => {
   res.send("hello");
 });
 
