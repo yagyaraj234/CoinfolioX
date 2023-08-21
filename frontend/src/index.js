@@ -5,14 +5,17 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { TokenProvider } from "./components/Context/Token";
 import { StrictMode } from "react";
+import { CurrencyProvider } from "./components/Context/CurrencyContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <StrictMode>
-    <TokenProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </TokenProvider>
+    <CurrencyProvider>
+      <TokenProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </TokenProvider>
+    </CurrencyProvider>
   </StrictMode>
 );
