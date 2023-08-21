@@ -23,16 +23,14 @@ const Header = () => {
         <MobHeader />
       ) : (
         <nav className="justify-between items-center md:px-10 px-2 py-1 cursor-pointer flex flex-row  ">
-          <p className="text-blue-800 font-bold text-2xl">
+          <p className="text-primary font-bold text-2xl">
             <Link to="/">CoinFolioX</Link>
           </p>
           <ul className=" md:flex md:flex-row gap-6 ">
             <li>
               <NavLink to="/">Home</NavLink>
             </li>
-            <li>
-              <NavLink to="/cryptocurrencies">Cryptocurrencies</NavLink>
-            </li>
+
             <li>
               <NavLink to="/exchanges">Exchanges</NavLink>
             </li>
@@ -44,7 +42,7 @@ const Header = () => {
             </li>
           </ul>
           <div className="flex gap-4">
-            <button className="border px-4 py-1 rounded-md hover:bg-blue-600  hover:text-white">
+            <button className="border px-4 py-1 rounded-md hover:bg-primary transition-colors duration-300 delay-75  hover:text-white">
               {token !== null ? (
                 <Link to="/profile">Profile</Link>
               ) : (
