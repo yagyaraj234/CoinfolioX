@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "link": "https://example.com/article-1",
+    "title": "Understanding Cryptocurrency Basics",
+    "desc": "This introductory article provides readers with a comprehensive overview of cryptocurrency. It covers the fundamental concepts behind cryptocurrencies, blockchain technology, and how digital currencies have evolved over time. The article explains key terms like decentralized ledgers, mining, and cryptography. It's a great starting point for those new to the world of cryptocurrencies.",
+    "user": "JohnDoe"
+  },
+  {
+    "id": 2,
+    "link": "https://example.com/article-2",
+    "title": "The Role of Cryptocurrencies in the Financial World",
+    "desc": "This article delves into the transformative role of cryptocurrencies in the financial sector. It explores how cryptocurrencies challenge traditional financial systems, the potential benefits they offer in terms of efficiency and accessibility, as well as the regulatory challenges they face. The article also discusses the rise of central bank digital currencies (CBDCs) and their implications for the future of money.",
+    "user": "JaneSmith"
+  },
+  {
+    "id": 3,
+    "link": "https://example.com/article-3",
+    "title": "Investing in Cryptocurrencies: Opportunities and Risks",
+    "desc": "This piece focuses on the investment landscape of cryptocurrencies. It provides insights into the various investment options available, from buying and holding to trading and staking. The article offers readers an understanding of the potential rewards and risks associated with cryptocurrency investments, including market volatility, security considerations, and the importance of due diligence.",
+    "user": "CryptoEnthusiast"
+  },
+  {
+    "id": 4,
+    "link": "https://example.com/article-4",
+    "title": "Cryptocurrency and the Future of Decentralized Finance (DeFi)",
+    "desc": "Exploring the emerging trend of Decentralized Finance (DeFi), this article explains how blockchain technology and cryptocurrencies are reshaping traditional financial services. It covers topics such as decentralized exchanges, lending platforms, yield farming, and the concept of smart contracts. The article discusses how DeFi is promoting financial inclusion and enabling individuals to take control of their financial transactions.",
+    "user": "BlockchainExplorer"
+  },
+  {
+    "id": 5,
+    "link": "https://example.com/article-5",
+    "title": "Environmental Concerns in Cryptocurrency Mining",
+    "desc": "This article takes a critical look at the environmental impact of cryptocurrency mining, particularly in the context of Proof of Work (PoW) consensus mechanisms. It examines the energy consumption associated with mining and the debates surrounding the sustainability of cryptocurrencies. The article also explores the efforts made by some projects to shift to more eco-friendly consensus mechanisms like Proof of Stake (PoS).",
+    "user": "EcoCrypto"
+  }
+]
