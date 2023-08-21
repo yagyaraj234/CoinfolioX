@@ -129,7 +129,7 @@ const CoinDetail = () => {
         </div>
         <div className=" flex flex-col">
           <p className="font-bold">Info</p>
-          <div className="flex my-1">
+          <div className="flex justify-between my-1">
             <p className="mr-10 ">Website</p>
             <Box
               name={coinData.links.homepage}
