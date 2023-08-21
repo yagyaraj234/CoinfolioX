@@ -72,7 +72,7 @@ const SubscriptionForm = () => {
         </div>
         <button
           type="submit"
-          className="border mt-2 w-full py-1 rounded-md bg-green-600 text-white"
+          className="border mt-2 w-full py-1 rounded-md bg-primary text-white"
         >
           Subscribe
         </button>
@@ -101,9 +101,11 @@ const Footer = () => {
         </Link>
         <div className="border-b-2 py-4 text-justify">
           <p>
-            Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Quidem voluptates aliquid obcaecati accusantium eligendi facilis
-            nostrum, magnam numquam quo corporis reiciendis.
+            Experience the thrill of monitoring live crypto prices while keeping
+            an eye on your digital fortune. CryptoLife offers a seamless user
+            interface to help both crypto experts and beginners manage their
+            investments with ease. Effortlessly visualize the fluctuating crypto
+            market and make informed decisions.
           </p>
         </div>
         <div className="flex flex-col justify-center items-start">
