@@ -3,24 +3,28 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import CryptoChart from "../components/Chart";
 import { Link } from "react-router-dom";
+import { SingleCoin } from "../config/api";
+import { useCurrency } from "../components/Context/CurrencyContext";
 // import coinData from "./data.json";
-
-// const data = [];
 
 function Box({ name, link }) {
   return (
     <div className="bg-[#E5E7EB] rounded-md p-1 px-2">
-      <a href={link} target="_blank">
+      <a href={link} target="_blank" rel="noreferrer">
         {name[0]}
       </a>
     </div>
   );
 }
-function Detail({ title, data }) {
+function Detail({ title, data, symbol }) {
   return (
     <div className="flex w-full md:w-[30vw] justify-between  text:sm sm:text-md md:text-md pr-2 py-1 border-b">
       <p className="opacity-80">{title}</p>
-      <p>{data}</p>
+      <p>
+        {" "}
+        {symbol}
+        {data}
+      </p>
     </div>
   );
 }
@@ -28,35 +32,33 @@ function Detail({ title, data }) {
 const CoinDetail = () => {
   let { id } = useParams();
   const [coinData, setCoinData] = useState(null);
-
+  const { currency, symbol } = useCurrency();
   const [val, setVal] = useState("1");
   const [currentPrice, setCurrentPrice] = useState(0);
 
   let price = currentPrice * val;
-  console.log(price);
   useEffect(() => {
     axios
-      .get(`https://api.coingecko.com/api/v3/coins/${id}`)
+      .get(SingleCoin(id))
       .then((res) => {
         setCoinData(res.data);
-        setCurrentPrice(res.data.market_data.current_price.usd);
-        console.log(res.data);
+        setCurrentPrice(
+          res.data.market_data.current_price[currency.toLowerCase()]
+        );
       })
       .catch((err) => console.log(err));
-  }, [id]);
+  }, [id, currency]);
 
   if (!coinData) {
     return <>Loading...</>;
   }
-
+  const newdesc = coinData.description.en;
+  const desc = newdesc.slice(0, 500);
   let percent =
-    (coinData.market_data.high_24h.usd - coinData.market_data.low_24h.usd) /
+    (coinData.market_data.high_24h[currency.toLowerCase()] -
+      coinData.market_data.low_24h[currency.toLowerCase()]) /
     100;
-  // let price = coinData.market_data.current_price.usd * val;
-  // useEffect(()=>{
-
-  // },[])
-
+  const curr = currency.toUpperCase();
   return (
     <>
       <div className="flex pb-5">
@@ -68,7 +70,7 @@ const CoinDetail = () => {
         </div>
         <p className="mt-1 ">{coinData.name}</p>
       </div>
-      <div className="flex justify-between">
+      <div className="flex flex-col md:flex-row  justify-between">
         <div className="flex flex-col gap-2 w-full md:w-[70%]">
           <p className="bg-gray-800 text-white font-bold  px-1 rounded-md w-[6em]  text-center">
             Rank #{coinData.coingecko_rank}
@@ -86,7 +88,8 @@ const CoinDetail = () => {
           </div>
           <div className="flex ">
             <p className="font-bold text-3xl">
-              ${coinData.market_data.current_price.usd}
+              {symbol}
+              {coinData.market_data.current_price[currency.toLowerCase()]}
             </p>
             <div className="font-extrabold rounded-lg mt-1 text-red-700 text-lg ml-2 flex">
               <div>
@@ -96,10 +99,10 @@ const CoinDetail = () => {
             </div>
           </div>
 
-          <div className="flex my-10">
+          <div className="flex-col flex md:flex-row my-10">
             <div className="flex flex-col  pl-0 ">
               <Detail
-                data={coinData.market_data.market_cap.usd}
+                data={coinData.market_data.market_cap[currency.toLowerCase()]}
                 title="Market Cap"
               />
               <Detail
@@ -107,21 +110,29 @@ const CoinDetail = () => {
                 title="Circulating Supply"
               />
               <Detail
-                data={`$ ${coinData.market_data.high_24h.usd}`}
+                data={` ${
+                  coinData.market_data.high_24h[currency.toLowerCase()]
+                }`}
+                symbol={symbol}
                 title="24h high"
               />
             </div>
             <div className="flex flex-col">
               <Detail
-                data={coinData.market_data.total_volume.usd}
+                symbol=""
+                data={coinData.market_data.total_volume[currency.toLowerCase()]}
                 title="Total Volume"
               />
               <Detail
+                symbol=""
                 data={coinData.market_data.max_supply}
                 title="Maximum Supply"
               />
               <Detail
-                data={`$ ${coinData.market_data.low_24h.usd}`}
+                data={` ${
+                  coinData.market_data.low_24h[currency.toLowerCase()]
+                }`}
+                symbol={symbol}
                 title="24h low"
               />
             </div>
@@ -139,20 +150,20 @@ const CoinDetail = () => {
           <div className="flex flex-col bg-[#E5E7EB] p-2 gap-2 rounded my-2">
             <p className="font-semibold mx-4 ">{coinData.name} Converter</p>
             <div className="flex justify-between mx-4">
-              <p className="font-semibold uppercase">{coinData.symbol}</p>
+              <p className="font-semibold uppercase mr-2">{coinData.symbol}</p>
               <input
                 type="number"
-                className="outline-none  rounded-sm p-1"
+                className="outline-none  rounded-sm p-1 px-2"
                 onChange={(e) => setVal(e.target.value)}
                 placeholder="1"
               />
             </div>
             <div className="flex justify-between mx-4">
-              <p className="font-semibold">USD</p>
+              <p className="font-semibold mr-2">{curr}</p>
               <input
                 readOnly
                 type="number"
-                className="outline-none  rounded-sm p-1"
+                className="outline-none  rounded-sm p-1 px-2"
                 onChange={(e) => setVal(e.target.val)}
                 value={price}
               />
@@ -164,7 +175,7 @@ const CoinDetail = () => {
 
       <div>
         <p className="text-3xl font-bold py-1">About.</p>
-        <p className="text-justify">{coinData.description.en}</p>
+        <p className="text-justify">{desc}...</p>
       </div>
     </>
   );
