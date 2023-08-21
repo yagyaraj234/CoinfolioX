@@ -11,7 +11,7 @@ function Box({ name, link }) {
   return (
     <div className="bg-[#E5E7EB] rounded-md p-1 px-2">
       <a href={link} target="_blank">
-        {name}
+        {name[0]}
       </a>
     </div>
   );
