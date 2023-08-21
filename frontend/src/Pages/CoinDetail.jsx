@@ -62,7 +62,7 @@ const CoinDetail = () => {
   return (
     <>
       <div className="flex pb-5">
-        <Link className="text-blue-700 text-lg " to="/Cryptocurrencies">
+        <Link className="text-blue-700 text-lg " to="/">
           Cryptocurrencies
         </Link>
         <div className="font-bold mt-1 text-lg text-blue-700">
