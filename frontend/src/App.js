@@ -4,7 +4,6 @@ import {
   Home,
   Portfolio,
   Login,
-  Cryptocurrencies,
   Signup,
   Trending,
   Articles,
@@ -21,14 +20,11 @@ function App() {
   const { token } = useToken();
   return (
     <Layout token={token}>
-      <div className=" text-justify bg-white">
+      <div className=" text-justify">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/portfolio" element={<Portfolio />} />
-          <Route
-            path="/cryptocurrencies"
-            element={<Cryptocurrencies />}
-          ></Route>
+
           <Route path="/coins/:id" element={<CoinDetail />} />
           <Route path="/trending" element={<Trending />} />
           <Route path="/articles" element={<Articles />} />
