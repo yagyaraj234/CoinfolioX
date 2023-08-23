@@ -52,13 +52,19 @@ const CoinDetail = () => {
   }, [id, currency]);
 
   if (!coinData) {
+<<<<<<< HEAD
     return <CircleLoader color="#050f0d" height={10} />;
+=======
+    return (
+      <div className="flex justify-center items-center">
+        <CircleLoader color="#050f0d" height={10} />
+      </div>
+    );
+
+>>>>>>> bb5beab31e1d7eb71e0ba879ca9e307a81fd3ac6
   }
   let newdesc = coinData.description.en;
 
-  // if (coinData?.description.en) {
-  //   newdesc = coinData.description.en;
-  // }
   const desc = newdesc.slice(0, 500);
   let percent =
     (coinData.market_data.high_24h[currency.toLowerCase()] -

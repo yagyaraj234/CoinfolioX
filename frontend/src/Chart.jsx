@@ -14,8 +14,12 @@ import {
 import { HistoricalChart } from "./config/api";
 Chart.register(CategoryScale, LinearScale, PointElement, LineElement);
 
+<<<<<<< HEAD
 const CryptoChart = ({ id, name, sym }) => {
   // console.log(csd.market_caps);
+=======
+const CryptoChart = ({,id name, sym }) => {
+>>>>>>> bb5beab31e1d7eb71e0ba879ca9e307a81fd3ac6
   const [cryptoData, setCryptoData] = useState([]);
   const [flag, setflag] = useState(false);
 
@@ -45,6 +49,7 @@ const CryptoChart = ({ id, name, sym }) => {
         </p>
       </div>
       {!cryptoData | (flag === false) ? (
+
         <div className="flex justify-center items-center">
           <BarLoader color="#050f0d" height={10} />
         </div>
