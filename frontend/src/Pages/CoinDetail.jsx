@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import CryptoChart from "../Chart";
+import CryptoChart from "../components/Chart";
 import { Link } from "react-router-dom";
 import { SingleCoin } from "../config/api";
 import { useCurrency } from "../components/Context/CurrencyContext";
@@ -56,9 +56,6 @@ const CoinDetail = () => {
   }
   let newdesc = coinData.description.en;
 
-  // if (coinData?.description.en) {
-  //   newdesc = coinData.description.en;
-  // }
   const desc = newdesc.slice(0, 500);
   let percent =
     (coinData.market_data.high_24h[currency.toLowerCase()] -
