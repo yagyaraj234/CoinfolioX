@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import CryptoChart from "../components/Chart";
+import CryptoChart from "../Chart";
 import { Link } from "react-router-dom";
 import { SingleCoin } from "../config/api";
 import { useCurrency } from "../components/Context/CurrencyContext";
-// import coinData from "./data.json";
+import { CircleLoader } from "react-spinners";
 
 function Box({ name, link }) {
   return (
@@ -31,16 +31,18 @@ function Detail({ title, data, symbol }) {
 
 const CoinDetail = () => {
   let { id } = useParams();
-  const [coinData, setCoinData] = useState(null);
+  const [coinData, setCoinData] = useState([]);
   const { currency, symbol } = useCurrency();
   const [val, setVal] = useState("1");
   const [currentPrice, setCurrentPrice] = useState(0);
+  console.log(coinData);
 
   let price = currentPrice * val;
   useEffect(() => {
     axios
       .get(SingleCoin(id))
       .then((res) => {
+        console.log(res.data);
         setCoinData(res.data);
         setCurrentPrice(
           res.data.market_data.current_price[currency.toLowerCase()]
@@ -50,9 +52,13 @@ const CoinDetail = () => {
   }, [id, currency]);
 
   if (!coinData) {
-    return <>Loading...</>;
+    return <CircleLoader color="#050f0d" height={10} />;
   }
-  const newdesc = coinData.description.en;
+  let newdesc = coinData.description.en;
+
+  // if (coinData?.description.en) {
+  //   newdesc = coinData.description.en;
+  // }
   const desc = newdesc.slice(0, 500);
   let percent =
     (coinData.market_data.high_24h[currency.toLowerCase()] -
@@ -171,7 +177,7 @@ const CoinDetail = () => {
           </div>
         </div>
       </div>
-      <CryptoChart />
+      <CryptoChart id={id} name={coinData.name} sym={coinData.symbol} />
 
       <div>
         <p className="text-3xl font-bold py-1">About.</p>
