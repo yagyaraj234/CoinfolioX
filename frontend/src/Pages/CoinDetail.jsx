@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import CryptoChart from "../Chart";
+import CryptoChart from "../components/Chart";
 import { Link } from "react-router-dom";
 import { SingleCoin } from "../config/api";
 import { useCurrency } from "../components/Context/CurrencyContext";
@@ -52,16 +52,11 @@ const CoinDetail = () => {
   }, [id, currency]);
 
   if (!coinData) {
-<<<<<<< HEAD
-    return <CircleLoader color="#050f0d" height={10} />;
-=======
     return (
       <div className="flex justify-center items-center">
         <CircleLoader color="#050f0d" height={10} />
       </div>
     );
-
->>>>>>> bb5beab31e1d7eb71e0ba879ca9e307a81fd3ac6
   }
   let newdesc = coinData.description.en;
 
