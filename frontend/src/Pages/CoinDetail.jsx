@@ -42,17 +42,19 @@ const CoinDetail = () => {
       .get(SingleCoin(id))
       .then((res) => {
         setCoinData(res.data);
-        console.log(res.data);
         setCurrentPrice(
           res.data.market_data.current_price[currency.toLowerCase()]
         );
       })
       .catch((err) => console.log(err));
   }, [id, currency]);
-  console.log(coinData);
 
   if (!coinData) {
-    return <CircleLoader color="#050f0d" height={10} />;
+    return (
+      <div className="flex justify-center">
+        <CircleLoader color="#050f0d" height={10} />
+      </div>
+    );
   }
   let newdesc = coinData.description.en;
 
