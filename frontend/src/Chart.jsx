@@ -45,9 +45,7 @@ const CryptoChart = ({ id, name, sym }) => {
         </p>
       </div>
       {!cryptoData | (flag === false) ? (
-        <div className="flex justify-center items-center">
-          <BarLoader color="#050f0d" height={10} />
-        </div>
+        <BarLoader color="#050f0d" height={10} />
       ) : (
         <div className="mx-auto md:w-[80vw] md:h-[80vh] w-[45vh]">
           <Line
