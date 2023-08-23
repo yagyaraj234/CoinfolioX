@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 import { Line } from "react-chartjs-2";
 import { useCurrency } from "./components/Context/CurrencyContext";
 import { BarLoader } from "react-spinners";
@@ -14,8 +15,9 @@ import {
 import { HistoricalChart } from "./config/api";
 Chart.register(CategoryScale, LinearScale, PointElement, LineElement);
 
-const CryptoChart = ({ id, name, sym }) => {
+const CryptoChart = ({ name, sym }) => {
   // console.log(csd.market_caps);
+  let { id } = useParams();
   const [cryptoData, setCryptoData] = useState([]);
   const [flag, setflag] = useState(false);
 
