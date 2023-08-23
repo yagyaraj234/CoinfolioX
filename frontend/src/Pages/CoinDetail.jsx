@@ -31,25 +31,25 @@ function Detail({ title, data, symbol }) {
 
 const CoinDetail = () => {
   let { id } = useParams();
-  const [coinData, setCoinData] = useState([]);
+  const [coinData, setCoinData] = useState();
   const { currency, symbol } = useCurrency();
-  const [val, setVal] = useState("1");
+  const [val, setVal] = useState(1);
   const [currentPrice, setCurrentPrice] = useState(0);
-  console.log(coinData);
 
   let price = currentPrice * val;
   useEffect(() => {
     axios
       .get(SingleCoin(id))
       .then((res) => {
-        console.log(res.data);
         setCoinData(res.data);
+        console.log(res.data);
         setCurrentPrice(
           res.data.market_data.current_price[currency.toLowerCase()]
         );
       })
       .catch((err) => console.log(err));
   }, [id, currency]);
+  console.log(coinData);
 
   if (!coinData) {
     return <CircleLoader color="#050f0d" height={10} />;

@@ -15,9 +15,8 @@ import { HistoricalChart } from "../config/api";
 Chart.register(CategoryScale, LinearScale, PointElement, LineElement);
 
 const CryptoChart = ({ id, name, sym }) => {
-  const [cryptoData, setCryptoData] = useState([]);
+  const [cryptoData, setCryptoData] = useState(null);
   const [flag, setflag] = useState(false);
-
   const [days, setDays] = useState(1);
   const { currency } = useCurrency();
   const curr = currency.toLowerCase();
