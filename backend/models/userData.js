@@ -1,5 +1,4 @@
 import mongoose, { Schema } from "mongoose";
-import jwt from "jsonwebtoken";
 import joi from "joi";
 import passwordComplexity from "joi-password-complexity";
 
@@ -16,9 +15,14 @@ const userData = new Schema({
     type: String,
     required: true,
   },
-  jwt_token:{
-    type:String,
-    default:""
+  avatar_url: {
+    type: String,
+    default:
+      "iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AABvWklEQVR42u2dB3gc1dWGB2ODAdN77yX0EnpCCS20EEiA0Hvgp9eEbjoBQiAhgQAhQEIAm92VLMty7733XuQm2ypTthft6v73jExirDszd",
+  },
+  jwt_token: {
+    type: String,
+    default: "",
   },
   createdAt: {
     type: Date,
@@ -37,7 +41,7 @@ const userSchema = mongoose.model("user", userData);
 
 const validate = (data) => {
   const schema = joi.object({
-    name: joi.string().required().label("Name"),
+    name: joi.string().required().label("name"),
     email: joi.string().email().required().label("Email"),
     password: passwordComplexity().required().label("Password"),
   });

@@ -1,7 +1,6 @@
-import { userSchema } from "../models/UserDetails.js";
+import { userSchema } from "../models/userData.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import cookie from "js-cookie";
 
 const userLogin = async (req, res) => {
   try {

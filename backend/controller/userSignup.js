@@ -1,4 +1,4 @@
-import { userSchema, validate } from "../models/UserDetails.js";
+import { userSchema, validate } from "../models/userData.js";
 import bcrypt from "bcrypt";
 
 const userSignup = async (req, res) => {

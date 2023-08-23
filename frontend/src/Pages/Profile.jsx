@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useToken } from "../components/Context/Token";
 
@@ -12,6 +13,7 @@ const profileMenu = [
 ];
 
 const Profile = () => {
+  const [userData, setUserData] = useState([]);
   const { setToken } = useToken();
   const navigate = useNavigate();
   const onLogOut = () => {
@@ -19,12 +21,34 @@ const Profile = () => {
     navigate("/");
     setToken(null);
   };
+
+  const { token } = useToken();
+
+  const fetchData = async (token) => {
+    try {
+      const response = await axios.get("/profile", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setUserData(response.data);
+    } catch (error) {
+      console.error("Error fetching profile:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(token);
+  }, []);
+  // const base64ImageData =
   return (
     <>
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
           <div className="mx-auto  flex flex-col items-center ">
-            <div className="h-[100px] w-[100px] bg-black rounded-full"></div>
+            <div className="h-[100px] w-[100px] border-2 rounded-full">
+              <img src={userData.avatar_url} alt="user-img" />
+            </div>
             <div className="my-5 text-xl">Kaise ho aap log</div>
           </div>
           <div className="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
