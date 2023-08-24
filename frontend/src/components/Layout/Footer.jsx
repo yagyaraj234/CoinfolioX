@@ -96,7 +96,7 @@ const Footer = () => {
     <div className="absolute w-full">
       <Toaster />
       <div className="flex flex-col md:px-10 px-2 py-2 md:w-full relative bottom-0 border-t-2">
-        <Link to="/" className="text-2xl font-bold text-blue-800 text-left">
+        <Link to="/" className="text-2xl font-bold text-[#C53678] text-left">
           CoinFolioX
         </Link>
         <div className="border-b-2 py-4 text-justify">

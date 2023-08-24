@@ -89,7 +89,7 @@ const CryptoChart = ({ id, name, sym }) => {
       {flag && (
         <div className="mx-auto flex justify-between w-[80vw] md:w-[40vw] my-5">
           <button
-            className={`bg-secondary font-semibold px-4 py-1 rounded-lg shadow-xl border ${
+            className={`bg-narvik font-semibold px-4 py-1 rounded-lg shadow-xl border ${
               days === 1 &&
               " border-[#090979] border-2  hover:text-[#090979] text-[#090979] "
             } `}
@@ -98,7 +98,7 @@ const CryptoChart = ({ id, name, sym }) => {
             1Days
           </button>
           <button
-            className={`bg-secondary font-semibold px-4 py-1 rounded-lg shadow-xl border ${
+            className={`bg-narvik font-semibold px-4 py-1 rounded-lg shadow-xl border ${
               days === 10 &&
               " border-[#090979] border-2  hover:text-[#090979] text-[#090979] "
             } `}
@@ -107,7 +107,7 @@ const CryptoChart = ({ id, name, sym }) => {
             10Days
           </button>
           <button
-            className={`bg-secondary font-semibold px-4 py-1 rounded-lg shadow-xl border ${
+            className={`bg-narvik font-semibold px-4 py-1 rounded-lg shadow-xl border ${
               days === 30 &&
               " border-[#090979] border-2  hover:text-[#090979] text-[#090979] "
             } `}
@@ -116,7 +116,7 @@ const CryptoChart = ({ id, name, sym }) => {
             30Days
           </button>
           <button
-            className={`bg-secondary font-semibold px-4 py-1 rounded-lg shadow-xl border ${
+            className={`bg-narvik font-semibold px-4 py-1 rounded-lg shadow-xl border ${
               days === 90 &&
               " border-[#090979] border-2  hover:text-[#090979] text-[#090979] "
             } `}
