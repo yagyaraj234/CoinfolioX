@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useCurrency } from "./Context/CurrencyContext";
 
 const Dropdown = () => {
-  const {setCurrency, setSymbol } = useCurrency();
+  const { setCurrency, setSymbol } = useCurrency();
 
   const options = [
     { value: "usd", label: "USD", symbol: "$" },
@@ -23,11 +23,11 @@ const Dropdown = () => {
   };
   return (
     <div className="relative inline-block text-left">
-      <div>
+      <div className="text-xs">
         <button
           type="button"
           onClick={toggleDropdown}
-          className="inline-flex justify-center w-full px-3 py-1 text-sm font-medium text-gray-700 bg-white border rounded-md shadow-sm hover:bg-gray-50 "
+          className=" inline-flex justify-center w-full px-4 pt-1  font-medium text-gray-700 bg-white  rounded-md shadow-sm hover:bg-gray-50 "
           id="options-menu"
           aria-expanded={isOpen}
           aria-haspopup="true"
@@ -64,8 +64,8 @@ const Dropdown = () => {
                 onClick={() => handleOptionChange(option)}
                 className={`${
                   selectedOption.value === option.value
-                    ? "text-indigo-600 bg-indigo-50"
-                    : "text-gray-900"
+                    ? "text-lightblue font-semibold bg-indigo-50"
+                    : "text-black"
                 } group flex items-center w-full px-4 py-2 text-sm`}
                 role="menuitem"
               >
