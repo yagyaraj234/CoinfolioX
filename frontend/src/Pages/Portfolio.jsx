@@ -1,8 +1,9 @@
 import React from 'react'
+import Profile from './Profile'
 
 const Portfolio = () => {
   return (
-    <div>Portfolio</div>
+    <Profile>Portfolio</Profile>
   )
 }
 
