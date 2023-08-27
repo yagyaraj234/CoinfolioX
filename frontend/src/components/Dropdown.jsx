@@ -12,7 +12,7 @@ const Dropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOptionChange = (option) => {
-    setSelectedOption(option.label);
+    setSelectedOption(option); // Update the selected option
     setIsOpen(false); // Close the dropdown after an option is selected
     setCurrency(option.value); // Set the selected currency
     setSymbol(option.symbol);
@@ -21,13 +21,14 @@ const Dropdown = () => {
   const toggleDropdown = () => {
     setIsOpen(!isOpen); // Toggle the dropdown's open/close state
   };
+
   return (
     <div className="relative inline-block text-left">
       <div className="text-xs">
         <button
           type="button"
           onClick={toggleDropdown}
-          className=" inline-flex justify-center w-full px-4 pt-1  font-medium text-gray-700 bg-white  rounded-md shadow-sm hover:bg-gray-50 "
+          className="inline-flex justify-center w-full px-4 pt-1 font-medium text-gray-700 bg-white rounded-md shadow-sm hover:bg-gray-50"
           id="options-menu"
           aria-expanded={isOpen}
           aria-haspopup="true"
@@ -63,7 +64,7 @@ const Dropdown = () => {
                 key={option.value}
                 onClick={() => handleOptionChange(option)}
                 className={`${
-                  selectedOption.value === option.value
+                  selectedOption === option
                     ? "text-lightblue font-semibold bg-indigo-50"
                     : "text-black"
                 } group flex items-center w-full px-4 py-2 text-sm`}

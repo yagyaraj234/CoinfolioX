@@ -13,8 +13,12 @@ const LiveSection = () => {
   const [ethPrice, setEthPrice] = useState(0);
   const getGlobalData = async () => {
     try {
-      const response = await axios.get("https://api.coingecko.com/api/v3/global");
+      const response = await axios.get(
+        "https://api.coingecko.com/api/v3/global"
+      );
       setGlobalData(response.data.data);
+      console.log(response.data);
+      console.log(response.data.data);
     } catch (error) {
       console.log(error);
     }
@@ -40,17 +44,17 @@ const LiveSection = () => {
       <div className="flex gap-5">
         <div className="flex font-semibold">
           <p>Coins:&nbsp;</p>
-          <p className="text-blue-600 ">{globalData.active_cryptocurrencies}</p>
+          <p className="text-blue-600 ">{globalData?.active_cryptocurrencies}</p>
         </div>
         <div className="flex font-semibold">
           <p>Exchanges:&nbsp; </p>
-          <p className="text-blue-600 ">{globalData.markets}</p>
+          <p className="text-blue-600 ">{globalData?.markets}</p>
         </div>
         <div className="flex font-semibold">
           <p>Market Cap:&nbsp;</p>
           <span className="text-blue-600 ">
             {symbol}&nbsp;
-            {globalData.total_market_cap[currency]}
+            {globalData?.total_market_cap[currency]}
           </span>
         </div>
       </div>
