@@ -17,8 +17,6 @@ const LiveSection = () => {
         "https://api.coingecko.com/api/v3/global"
       );
       setGlobalData(response.data.data);
-      console.log(response.data);
-      console.log(response.data.data);
     } catch (error) {
       console.log(error);
     }

@@ -64,7 +64,7 @@ const Header = () => {
             font-semibold transition-colors duration-700 delay-75  hover:text-white"
             >
               {token !== null ? (
-                <Link to="/profile">Profile</Link>
+                <Link to="/profile/edit-profile">Profile</Link>
               ) : (
                 <Link to="/login">Login</Link>
               )}
