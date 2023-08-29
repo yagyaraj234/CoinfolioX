@@ -13,6 +13,9 @@ module.exports = {
         narvik: "#EAE7DD",
         sorrelbrown: "#99775C",
       },
+      screens: {
+        xs: { max: "443px" },
+      },
     },
   },
   plugins: [],
