@@ -6,6 +6,8 @@ import getUser from "./controller/getUser.js";
 import connectDB from "./dbConnect.js";
 import cors from "cors";
 import authenticateToken from "./middlewares/authenticateToken.js";
+import updateUser from "./controller/updateUser.js";
+import addToFav from "./controller/AddToFav.js";
 
 dotenv.config();
 const app = Express();
@@ -21,6 +23,8 @@ connectDB();
 app.post("/signup", userSignup);
 app.post("/login", userLogin);
 app.get("/profile", authenticateToken, getUser);
+app.patch("/update-profile", authenticateToken, updateUser);
+app.patch("/favorites", authenticateToken, addToFav);
 app.get("/", (req, res) => {
   res.send("hello");
 });
