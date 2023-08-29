@@ -24,6 +24,17 @@ const userData = new Schema({
     type: String,
     default: "",
   },
+  bio: {
+    type: String,
+    default: "",
+  },
+  favorites: [{ type: String, default: "" }],
+  portfolio: [
+    {
+      type: String,
+      default: "",
+    },
+  ],
   createdAt: {
     type: Date,
     default: Date.now,
