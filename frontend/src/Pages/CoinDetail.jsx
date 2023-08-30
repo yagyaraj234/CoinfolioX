@@ -6,6 +6,9 @@ import { Link } from "react-router-dom";
 import { SingleCoin } from "../config/api";
 import { useCurrency } from "../components/Context/CurrencyContext";
 import { CircleLoader } from "react-spinners";
+import { AiOutlineStar } from "react-icons/ai";
+import { useToken } from "../components/Context/Token";
+import { Toaster, toast } from "react-hot-toast";
 
 function Box({ name, link }) {
   return (
@@ -30,11 +33,30 @@ function Detail({ title, data, symbol }) {
 }
 
 const CoinDetail = () => {
+  const { token } = useToken();
   let { id } = useParams();
   const [coinData, setCoinData] = useState();
   const { currency, symbol } = useCurrency();
   const [val, setVal] = useState(1);
+  let [coin, setCoin] = useState("");
   const [currentPrice, setCurrentPrice] = useState(0);
+  coin = coin.toLowerCase();
+  const addFav = async () => {
+    try {
+      const res = axios.patch(
+        "/favorites",
+        { coin },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      toast.success(res.data.message);
+    } catch (error) {
+      console.log({ message: "Error adding favorite", error: error.message });
+    }
+  };
 
   let price = currentPrice * val;
   useEffect(() => {
@@ -42,6 +64,7 @@ const CoinDetail = () => {
       .get(SingleCoin(id))
       .then((res) => {
         setCoinData(res.data);
+        setCoin(res.data.name);
         setCurrentPrice(
           res.data.market_data.current_price[currency.toLowerCase()]
         );
@@ -64,8 +87,10 @@ const CoinDetail = () => {
       coinData.market_data.low_24h[currency.toLowerCase()]) /
     100;
   const curr = currency.toUpperCase();
+
   return (
     <>
+      <Toaster />
       <div className="flex pb-5">
         <Link className="text-blue-700 text-lg " to="/">
           Cryptocurrencies
@@ -80,16 +105,24 @@ const CoinDetail = () => {
           <p className="bg-gray-800 text-white font-bold  px-1 rounded-md w-[6em]  text-center">
             Rank #{coinData.coingecko_rank}
           </p>
-          <div className="flex gap-2">
-            <img
-              className="h-8 w-8"
-              src={coinData.image.small}
-              alt={`${coinData.id} logo`}
-            />
-            <p className="uppercase  font-bold text-xl">{coinData.id}</p>
-            <p className="font-bold uppercase text-gray-600 text-xl">
-              {coinData.symbol}
-            </p>
+          <div className="flex gap-2 justify-between">
+            <div className="flex">
+              <img
+                className="h-8 w-8"
+                src={coinData.image.small}
+                alt={`${coinData.id} logo`}
+              />
+              <p className="uppercase  font-bold text-xl">{coinData.id}</p>
+              <p className="font-bold uppercase text-gray-600 text-xl">
+                {coinData?.symbol}
+              </p>
+            </div>
+            <div>
+              <AiOutlineStar
+                onClick={addFav}
+                className="text-xl md:text-2xl focus-within:text-yellow-500 mr-4"
+              />
+            </div>
           </div>
           <div className="flex ">
             <p className="font-bold text-3xl">
