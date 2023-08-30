@@ -41,7 +41,10 @@ const MobHeader = () => {
           </NavLink>
           {/* <Link className="border-b-2 font-semibold py-2" to="/login">Login</Link> */}
           {token !== null ? (
-            <Link to="/profile" className="border-b-2 font-semibold py-2">
+            <Link
+              to="/profile/edit-profile"
+              className="border-b-2 font-semibold py-2"
+            >
               Profile
             </Link>
           ) : (
